@@ -5,13 +5,13 @@ environment {
 }
 
 stages {
-  stage (create storage class bucket')
-     steps {
-      script {
-      createStorageBucket('mytftestbucket-dev')
-            }
-       }
- stage('terraform init and apply-dev'){
+    stage (create storage class bucket')
+      steps {
+        script {
+                createStorageBucket('mytftestbucket-dev')
+              }
+         }
+    stage('terraform init and apply-dev'){
             steps{
                 sh returnStatus: true, script: 'terraform workspace new dev'
                 // this command will help to run the job continuosly even though condition fail
