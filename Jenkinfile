@@ -27,8 +27,7 @@ stages {
                 sh 'terraform init'
                 sh 'terraform apply -var-file=stage.tfvars -auto-approve'
             }
-        } 
-       
+        }
      }
    }
 
