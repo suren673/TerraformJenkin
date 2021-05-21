@@ -1,27 +1,29 @@
 pipeline {
-
 agent any 
 environment {
   PATH = "${PATH} : ${getterraformPath()}"
 }
 
 stages {
- stage('Initialize'){
+ stage('terraform init and apply-dev'){
             steps{
+                sh returnStatus: true, script: 'terraform workspace new dev'
+                // this command will help to run the job continuosly even though condition fails
+                sh 'terraform workspace new dev'
                 sh 'terraform init'
+                sh 'terraform apply -var-files=dev.tfvars -auto-approve'
             }
         }
-        
-   stage('Plan'){
+       stage('terraform init and apply-stage'){
             steps{
-                sh 'terraform plan'
+                sh returnStatus: true, script: 'terraform workspace new stage'
+                // this command will help to run the job continuosly even though condition fails
+                sh 'terraform workspace new stage'
+                sh 'terraform init'
+                sh 'terraform apply -var-files=stage.tfvars -auto-approve'
             }
-        }
-        stage('Apply'){
-            steps{
-                sh 'terraform apply -auto-approve'
-            }
-        }     
+        } 
+       
      }
    }
 

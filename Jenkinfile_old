@@ -1,0 +1,32 @@
+pipeline {
+
+agent any 
+environment {
+  PATH = "${PATH} : ${getterraformPath()}"
+}
+
+stages {
+ stage('Initialize'){
+            steps{
+                sh 'terraform init'
+            }
+        }
+        
+   stage('Plan'){
+            steps{
+                sh 'terraform plan'
+            }
+        }
+        stage('Apply'){
+            steps{
+                sh 'terraform apply -auto-approve'
+            }
+        }     
+     }
+   }
+
+
+def getterraformPath(){
+ def dfHome=tool name: 'terraform-15', type: 'terraform'
+  return dfHome
+}
