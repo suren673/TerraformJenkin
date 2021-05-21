@@ -7,7 +7,7 @@ environment {
 stages {
  stage('terraform init and apply-dev'){
             steps{
-                sh returnStatus: true, script: 'terraform workspace new dev' 
+                sh 'returnStatus: true, script: 'terraform workspace new dev'' 
                 // this command will help to run the job continuosly even though condition fails
                 sh 'terraform workspace new dev'
                 sh 'terraform init'
@@ -16,7 +16,7 @@ stages {
         }
        stage('terraform init and apply-stage'){
             steps{
-                sh returnStatus: true, script: 'terraform workspace new stage' 
+                sh 'returnStatus: true, script: 'terraform workspace new stage'' 
                 // this command will help to run the job continuosly even though condition fails
                 sh 'terraform workspace new stage'
                 sh 'terraform init'
