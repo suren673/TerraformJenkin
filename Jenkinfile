@@ -10,7 +10,7 @@ stages {
                 sh returnStatus: true, script: 'terraform workspace new dev'
                 // this command will help to run the job continuosly even though condition fail
                 sh 'terraform init'
-                sh 'terraform apply -var-files=dev.tfvars -auto-approve'
+                sh 'terraform apply -var-file=dev.tfvars -auto-approve'
             }
         }
        stage('terraform init and apply-stage'){
@@ -19,7 +19,7 @@ stages {
                 // this command will help to run the job continuosly even though condition fails
                 
                 sh 'terraform init'
-                sh 'terraform apply -var-files=stage.tfvars -auto-approve'
+                sh 'terraform apply -var-file=stage.tfvars -auto-approve'
             }
         } 
        
