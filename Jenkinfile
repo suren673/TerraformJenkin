@@ -5,6 +5,7 @@ environment {
 }
 
 stages {
+<<<<<<< HEAD
     stage (create storage class bucket')
       steps {
         script {
@@ -12,6 +13,15 @@ stages {
               }
          }
     stage('terraform init and apply-dev'){
+=======
+  /*stage (create storage class bucket')
+     steps {
+      script {
+      createStorageBucket('mytftestbucket-dev')
+            }
+       }*/
+ stage('terraform init and apply-dev'){
+>>>>>>> b85ee7ffa26181f56acb0cb78e0a1c8e40f23056
             steps{
                 sh returnStatus: true, script: 'terraform workspace new dev'
                 // this command will help to run the job continuosly even though condition fail
@@ -27,8 +37,7 @@ stages {
                 sh 'terraform init'
                 sh 'terraform apply -var-file=stage.tfvars -auto-approve'
             }
-        } 
-       
+        }
      }
    }
 
@@ -38,7 +47,7 @@ def getterraformPath(){
   return dfHome
 }
 
-def createStorageBucket(bucketName)
+/*def createStorageBucket(bucketName)
 {
   sh returnStatus: true, script: 'gsutil mb -c standard -l us-east1 gs://{bucketName}'
-}
+}*/
