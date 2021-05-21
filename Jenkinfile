@@ -5,6 +5,12 @@ environment {
 }
 
 stages {
+  stage (create storage class bucket')
+     steps {
+      script {
+      createStorageBucket('mytftestbucket-dev')
+            }
+       }
  stage('terraform init and apply-dev'){
             steps{
                 sh returnStatus: true, script: 'terraform workspace new dev'
@@ -30,4 +36,9 @@ stages {
 def getterraformPath(){
  def dfHome=tool name: 'terraform-15', type: 'terraform'
   return dfHome
+}
+
+def createStorageBucket(bucketName)
+{
+  sh returnStatus: true, script: 'gsutil mb -c standard -l us-east1 gs://{bucketName}'
 }

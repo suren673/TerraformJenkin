@@ -32,3 +32,13 @@ variable "gcp_auth_file" {
   type        = string
   description = "authentication file"
 }
+
+variable "bucket_name" {
+  type    = string
+  default = "the name of the cloud storage bucket"
+}
+
+variable "storage_class" {
+  type    = string
+  default = "the name of the storage class"
+}
